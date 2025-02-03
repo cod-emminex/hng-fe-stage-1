@@ -1,16 +1,16 @@
 <!-- index.html -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Color Guessing Game</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <div class="game-container">
+  <div class="game-container" fontFamily="Montserrat">
     <h1>Color Guessing Game</h1>
 
     <p data-testid="gameInstructions" class="instructions">
@@ -27,7 +27,9 @@
 
     <div class="game-controls">
       <p>Score: <span data-testid="score">0</span></p>
-      <button data-testid="newGameButton" class="new-game-btn">New Game</button>
+      <button data-testid="newGameButton" class="new-game-btn">
+        New Game
+      </button>
     </div>
   </div>
   <script src="script.js"></script>

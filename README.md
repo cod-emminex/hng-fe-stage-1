@@ -17,7 +17,7 @@ This is a color guessing game implemented as part of the HNG Internship Stage 1 
 - Vanilla JavaScript
 
 ## Live Demo
-[Play the Color Game](your-deployed-url-here)
+[Play the Color Game](https://hng-fe-stage-1.vercel.app/)
 
 ## Game Instructions
 1. Look at the target color displayed in the color box
@@ -61,7 +61,7 @@ All elements include data-testid attributes for testing purposes:
 - Mobile: Optimized view with 2x3 grid
 
 ## Author
-GitHub: [cod-emminex](https://github.com/cod-emminex)
+GitHub: [@cod-emminex](https://github.com/cod-emminex)
 
 ## Acknowledgments
 HNG Internship program for the project requirements
