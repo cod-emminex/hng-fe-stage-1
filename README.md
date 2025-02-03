@@ -33,35 +33,40 @@ This is a color guessing game implemented as part of the HNG Internship Stage 1 
 1. Clone the repository
 ```bash
 git clone https://github.com/cod-emminex/hng-stage1-task.git
-Navigate to the project directory
-bash
+```
+2. Navigate to the project directory
+```bash
 cd hng-stage1-task
-Open index.html in your web browser
-Testing
+```
+3. Open index.html in your web browser
+
+## Testing
 All elements include data-testid attributes for testing purposes:
 
-data-testid="colorBox" - Target color display
-data-testid="colorOption" - Color choice buttons
-data-testid="gameInstructions" - Game instructions
-data-testid="gameStatus" - Current game status
-data-testid="score" - Score display
-data-testid="newGameButton" - New game button
-Implementation Details
-Random color generation using RGB values
-Responsive grid layout for color options
-CSS animations for user feedback
-Score persistence during gameplay
-Mobile-first design approach
-Responsive Design
-Desktop: Full-width layout with 3x2 grid
-Tablet: Adapted layout with adjusted grid
-Mobile: Optimized view with 2x3 grid
-Author
+- data-testid="colorBox" - Target color display
+- data-testid="colorOption" - Color choice buttons
+- data-testid="gameInstructions" - Game instructions
+- data-testid="gameStatus" - Current game status
+- data-testid="score" - Score display
+- data-testid="newGameButton" - New game button
+- Implementation Details
+- Random color generation using RGB values
+- Responsive grid layout for color options
+- CSS animations for user feedback
+- Score persistence during gameplay
+- Mobile-first design approach
+- Responsive Design
+- Desktop: Full-width layout with 3x2 grid
+- Tablet: Adapted layout with adjusted grid
+- Mobile: Optimized view with 2x3 grid
+
+## Author
 GitHub: @cod-emminex
-Acknowledgments
+
+## Acknowledgments
 HNG Internship program for the project requirements
-[Add any additional acknowledgments]
-License
+
+## License
 This project is part of the HNG Internship Stage 1 task and is available for review and educational purposes.
 
 
