@@ -38,7 +38,6 @@ git clone https://github.com/cod-emminex/hng-stage1-task.git
 ```bash
 cd hng-stage1-task
 ```
-3. Open index.html in your web browser
 
 ## Testing
 All elements include data-testid attributes for testing purposes:
