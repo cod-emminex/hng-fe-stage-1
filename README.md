@@ -61,7 +61,7 @@ All elements include data-testid attributes for testing purposes:
 - Mobile: Optimized view with 2x3 grid
 
 ## Author
-GitHub: @cod-emminex
+GitHub: [https://github.com/cod-emminex](cod-emminex)
 
 ## Acknowledgments
 HNG Internship program for the project requirements
