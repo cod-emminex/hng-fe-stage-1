@@ -1,0 +1,149 @@
+/* styles.css */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-color: #f0f0f0;
+}
+
+.game-container {
+	max-width: 600px;
+	width: 90%;
+	padding: 2rem;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+
+h1 {
+	margin-bottom: 1.5rem;
+	color: #333;
+}
+
+.instructions {
+	margin-bottom: 1.5rem;
+	color: #666;
+}
+
+.color-box {
+	width: 200px;
+	height: 200px;
+	margin: 0 auto 1.5rem;
+	border: 3px solid #333;
+	border-radius: 10px;
+	transition: background-color 0.3s ease;
+}
+
+.color-options {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1rem;
+	margin: 1.5rem 0;
+}
+
+.color-option {
+	width: 100%;
+	aspect-ratio: 1;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: transform 0.2s ease;
+}
+
+.color-option:hover {
+	transform: scale(1.05);
+}
+
+.game-status {
+	min-height: 24px;
+	margin: 1rem 0;
+	font-weight: bold;
+}
+
+.game-status.correct {
+	color: #2ecc71;
+	animation: fadeIn 0.5s ease;
+}
+
+.game-status.wrong {
+	color: #e74c3c;
+	animation: shake 0.5s ease;
+}
+
+.new-game-btn {
+	padding: 0.8rem 1.5rem;
+	font-size: 1rem;
+	background-color: #3498db;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.new-game-btn:hover {
+	background-color: #2980b9;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes shake {
+
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+
+	25% {
+		transform: translateX(-5px);
+	}
+
+	75% {
+		transform: translateX(5px);
+	}
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	.game-container {
+		width: 95%;
+		padding: 1rem;
+	}
+
+	.color-box {
+		width: 150px;
+		height: 150px;
+	}
+
+	.color-options {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 480px) {
+	h1 {
+		font-size: 1.5rem;
+	}
+
+	.color-box {
+		width: 120px;
+		height: 120px;
+	}
+}
