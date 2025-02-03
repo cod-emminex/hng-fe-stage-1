@@ -18,7 +18,12 @@ class ColorGame {
   }
 
   setupEventListeners() {
-    this.newGameButton.addEventListener('click', () => this.startNewGame());
+    this.newGameButton.addEventListener('click', () => {
+      // Reset score when New Game button is pressed
+      this.score = 0;
+      this.scoreElement.textContent = '0';
+      this.startNewGame();
+    });
   }
 
   generateRandomColor() {
