@@ -94,7 +94,7 @@ class ColorGame {
       this.gameStatus.className = 'game-status correct';
       setTimeout(() => this.startNewGame(), 1500);
     } else {
-      this.score------;
+      this.score--;
       this.updateScoreDisplay();
 
       if (this.score <= 0) {
