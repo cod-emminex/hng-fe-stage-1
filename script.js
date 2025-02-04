@@ -1,11 +1,15 @@
 // script.js
 class ColorGame {
   constructor() {
-    this.score = 0;
+    this.score = 3; // Start with 3 points
+    this.highScore = this.getHighScore();
     this.colors = [];
     this.targetColor = '';
+    this.gameActive = true;
     this.setupElements();
     this.setupEventListeners();
+    this.updateScoreDisplay();
+    this.updateHighScoreDisplay();
     this.startNewGame();
   }
 
@@ -15,15 +19,41 @@ class ColorGame {
     this.scoreElement = document.querySelector('[data-testid="score"]');
     this.colorOptions = document.querySelector('.color-options');
     this.newGameButton = document.querySelector('[data-testid="newGameButton"]');
+
+    // Create high score element if it doesn't exist
+    if (!document.querySelector('[data-testid="highScore"]')) {
+      const highScoreDiv = document.createElement('div');
+      highScoreDiv.setAttribute('data-testid', 'highScore');
+      highScoreDiv.className = 'high-score';
+      document.querySelector('.game-controls').appendChild(highScoreDiv);
+    }
+    this.highScoreElement = document.querySelector('[data-testid="highScore"]');
   }
 
   setupEventListeners() {
     this.newGameButton.addEventListener('click', () => {
-      // Reset score when New Game button is pressed
-      this.score = 0;
-      this.scoreElement.textContent = '0';
-      this.startNewGame();
+      this.resetGame();
     });
+  }
+
+  getHighScore() {
+    return parseInt(localStorage.getItem('colorGameHighScore')) || 0;
+  }
+
+  updateHighScore() {
+    if (this.score > this.highScore) {
+      this.highScore = this.score;
+      localStorage.setItem('colorGameHighScore', this.score.toString());
+      this.updateHighScoreDisplay();
+    }
+  }
+
+  updateHighScoreDisplay() {
+    this.highScoreElement.textContent = `High Score: ${this.highScore}`;
+  }
+
+  updateScoreDisplay() {
+    this.scoreElement.textContent = `Lives: ${this.score}`;
   }
 
   generateRandomColor() {
@@ -54,19 +84,48 @@ class ColorGame {
   }
 
   checkGuess(guessedColor) {
+    if (!this.gameActive) return;
+
     if (guessedColor === this.targetColor) {
       this.score++;
-      this.scoreElement.textContent = this.score;
+      this.updateHighScore();
+      this.updateScoreDisplay();
       this.gameStatus.textContent = 'Correct! Well done!';
       this.gameStatus.className = 'game-status correct';
       setTimeout(() => this.startNewGame(), 1500);
     } else {
-      this.gameStatus.textContent = 'Wrong! Try again!';
-      this.gameStatus.className = 'game-status wrong';
+      this.score------;
+      this.updateScoreDisplay();
+
+      if (this.score <= 0) {
+        this.gameOver();
+      } else {
+        this.gameStatus.textContent = 'Wrong! Try again!';
+        this.gameStatus.className = 'game-status wrong';
+      }
     }
   }
 
+  gameOver() {
+    this.gameActive = false;
+    this.gameStatus.textContent = 'Game Over! Click New Game to try again!';
+    this.gameStatus.className = 'game-status game-over';
+    this.colorOptions.style.opacity = '0.5';
+    this.colorOptions.style.pointerEvents = 'none';
+  }
+
+  resetGame() {
+    this.score = 3;
+    this.gameActive = true;
+    this.updateScoreDisplay();
+    this.colorOptions.style.opacity = '1';
+    this.colorOptions.style.pointerEvents = 'auto';
+    this.startNewGame();
+  }
+
   startNewGame() {
+    if (!this.gameActive) return;
+
     this.generateColors();
     this.createColorButtons();
     this.colorBox.style.backgroundColor = this.targetColor;
