@@ -22,16 +22,16 @@ class ColorGame {
     this.colorOptions = document.querySelector('.color-options');
     this.newGameButton = document.querySelector('[data-testid="newGameButton"]');
 
-    // Create lives display if it doesn't exist
+    // Create lives display
     if (!document.querySelector('[data-testid="lives"]')) {
       const livesDiv = document.createElement('div');
       livesDiv.setAttribute('data-testid', 'lives');
       livesDiv.className = 'lives-container';
-      document.querySelector('.game-controls').appendChild(livesDiv);
+      document.querySelector('.game-controls').insertBefore(livesDiv, this.scoreElement);
     }
     this.livesElement = document.querySelector('[data-testid="lives"]');
 
-    // Create high score element if it doesn't exist
+    // Create high score element
     if (!document.querySelector('[data-testid="highScore"]')) {
       const highScoreDiv = document.createElement('div');
       highScoreDiv.setAttribute('data-testid', 'highScore');
@@ -39,6 +39,34 @@ class ColorGame {
       document.querySelector('.game-controls').appendChild(highScoreDiv);
     }
     this.highScoreElement = document.querySelector('[data-testid="highScore"]');
+  }
+
+  setupEventListeners() {
+    this.newGameButton.addEventListener('click', () => {
+      this.resetGame();
+    });
+  }
+
+  getHighScore() {
+    return parseInt(localStorage.getItem('colorGameHighScore')) || 0;
+  }
+
+  updateHighScore() {
+    if (this.score > this.highScore) {
+      this.highScore = this.score;
+      localStorage.setItem('colorGameHighScore', this.score.toString());
+      this.updateHighScoreDisplay();
+    }
+  }
+
+  updateHighScoreDisplay() {
+    this.highScoreElement.textContent = `High Score: ${this.highScore}`;
+  }
+
+  updateScoreDisplay() {
+    this.scoreElement.textContent = `Score: ${this.score}`;
+    this.scoreElement.classList.add('score-pulse');
+    setTimeout(() => this.scoreElement.classList.remove('score-pulse'), 500);
   }
 
   updateLivesDisplay() {
@@ -54,10 +82,31 @@ class ColorGame {
     }
   }
 
-  updateScoreDisplay() {
-    this.scoreElement.textContent = `Score: ${this.score}`;
-    this.scoreElement.classList.add('score-pulse');
-    setTimeout(() => this.scoreElement.classList.remove('score-pulse'), 500);
+  generateRandomColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+
+  generateColors() {
+    this.colors = [];
+    for (let i = 0; i < 6; i++) {
+      this.colors.push(this.generateRandomColor());
+    }
+    this.targetColor = this.colors[Math.floor(Math.random() * 6)];
+  }
+
+  createColorButtons() {
+    this.colorOptions.innerHTML = '';
+    this.colors.forEach((color) => {
+      const button = document.createElement('button');
+      button.setAttribute('data-testid', 'colorOption');
+      button.className = 'color-option';
+      button.style.backgroundColor = color;
+      button.addEventListener('click', () => this.checkGuess(color));
+      this.colorOptions.appendChild(button);
+    });
   }
 
   checkGuess(guessedColor) {
@@ -118,11 +167,22 @@ class ColorGame {
     this.updateLivesDisplay();
     this.colorOptions.classList.remove('game-over-fade');
     this.startNewGame();
-    
-    // Add reset animation
+
     this.colorBox.classList.add('reset-animation');
     setTimeout(() => this.colorBox.classList.remove('reset-animation'), 500);
   }
+
+  startNewGame() {
+    if (!this.gameActive) return;
+
+    this.generateColors();
+    this.createColorButtons();
+    this.colorBox.style.backgroundColor = this.targetColor;
+    this.gameStatus.textContent = '';
+    this.gameStatus.className = 'game-status';
+  }
+}
+
 // Initialize the game when the page loads
 window.addEventListener('load', () => {
   new ColorGame();

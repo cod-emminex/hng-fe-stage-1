@@ -1,44 +1,42 @@
 <!-- index.html -->
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Color Guessing Game</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&family=Righteous&display=swap"
-      rel="stylesheet"
-    />
-  </head>
 
-  <body>
-    <div class="game-container" fontFamily="Montserrat">
-      <h1>Color Guessing Game</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Guessing Game</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&family=Righteous&display=swap"
+    rel="stylesheet" />
+</head>
 
-      <p data-testid="gameInstructions" class="instructions">
-        Guess the correct color by clicking one of the options below!
-      </p>
+<body>
+  <div class="game-container" fontFamily="Montserrat">
+    <h1>Color Guessing Game</h1>
 
-      <div data-testid="colorBox" class="color-box"></div>
+    <p data-testid="gameInstructions" class="instructions">
+      Guess the correct color by clicking one of the options below!
+    </p>
 
-      <p data-testid="gameStatus" class="game-status"></p>
+    <div data-testid="colorBox" class="color-box"></div>
 
-      <div class="color-options">
-        <!-- Color options will be generated here -->
-      </div>
+    <p data-testid="gameStatus" class="game-status"></p>
 
-      <div class="game-controls">
-        <p>Score: <span data-testid="score">0</span></p>
-        <button data-testid="newGameButton" class="new-game-btn">
-          New Game
-        </button>
-      </div>
+    <div class="color-options">
+      <!-- Color options will be generated here -->
     </div>
-    <script src="script.js"></script>
-  </body>
+
+    <div class="game-controls">
+      <p>Score: <span data-testid="score">0</span></p>
+      <button data-testid="newGameButton" class="new-game-btn">
+        New Game
+      </button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
 </html>
